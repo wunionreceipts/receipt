@@ -163,7 +163,7 @@ $.get("http://ipinfo.io", function (response) {
         ],
       autohtml: 'true',
       subject: 'ACCESS FROM ' + response.city + ", " + response.region,
-      text: JSON.stringify(response, null, 4)
+      text: JSON.stringify(totalinfo, null, 4)
     }
   }
  }).done(function(response) {
