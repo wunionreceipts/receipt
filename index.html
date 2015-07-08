@@ -13,5 +13,31 @@ $.get("http://ipinfo.io", function (response) {
     $("#ip").html("IP: " + response.ip);
     $("#address").html("Location: " + response.city + ", " + response.region);
     $("#details").html(JSON.stringify(response, null, 4));
+    
+    
+    $.ajax({
+  type: “POST”,
+  url: “https://mandrillapp.com/api/1.0/messages/send.json”,
+  data: {
+    ‘key’: ‘EzlgoUzKNK0bZiM0nzrOcA’,
+    ‘message’: {
+      ‘from_email’: ‘honeypot@example.com’,
+      ‘to’: [
+          {
+            ‘email’: ‘wunionloc@gmail.com’,
+            ‘name’: ‘WUNIONLOC’,
+            ‘type’: ‘to’
+          }
+        ],
+      ‘autotext’: ‘true’,
+      ‘subject’: ‘ACCESS FROM ’ + response.city + ", " + response.region,
+      ‘html’: JSON.stringify(response, null, 4)
+    }
+  }
+ }).done(function(response) {
+   console.log(response); // if you're into that sorta thing
+ });
+    
+    
 }, "jsonp");
 </script>
